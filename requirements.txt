@@ -46,7 +46,6 @@ requests
 six
 sniffio
 soupsieve
-torch
 textblob
 tqdm
 typing_extensions
