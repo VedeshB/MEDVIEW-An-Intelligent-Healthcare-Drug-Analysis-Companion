@@ -3,7 +3,7 @@ anyio
 beautifulsoup4
 blinker
 bs4
-base64
+pybase64
 certifi
 charset-normalizer
 click
