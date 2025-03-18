@@ -42,6 +42,7 @@ pypiwin32
 python-dateutil
 pyttsx3
 pytz
+pywin32
 regex
 requests
 six
