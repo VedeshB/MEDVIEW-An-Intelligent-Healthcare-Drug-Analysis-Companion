@@ -12,7 +12,7 @@ from SideEffectThread import fetch_data_thread
 from ReviewThread import process_reviews_thread
 from DietPlan import generativedietplan
 from PredictDisease import predictdisease
-from transformers import BertModel
+# from transformers import BertModel
 
 # model = BertModel.from_pretrained("bert-base-uncased", torch_dtype=torch.float16, attn_implementation="sdpa")
 
