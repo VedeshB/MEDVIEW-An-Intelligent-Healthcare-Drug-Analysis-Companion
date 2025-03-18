@@ -4,7 +4,7 @@ import pandas as pd
 import threading
 from PIL import Image
 import PIL
-import torch
+# import torch
 from PrescriptionAnalysis import prescriptionanalysis
 from pymongo import MongoClient
 from TextProcessing import filter_word
@@ -14,7 +14,7 @@ from DietPlan import generativedietplan
 from PredictDisease import predictdisease
 from transformers import BertModel
 
-model = BertModel.from_pretrained("bert-base-uncased", torch_dtype=torch.float16, attn_implementation="sdpa")
+# model = BertModel.from_pretrained("bert-base-uncased", torch_dtype=torch.float16, attn_implementation="sdpa")
 
 
 client = MongoClient("mongodb+srv://vedesh:Vedeshsb003%40@user.8fwgqcw.mongodb.net/?retryWrites=true&w=majority&appName=user")
