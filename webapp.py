@@ -208,7 +208,3 @@ def get_suggestions():
     suggestions = [d for d in diseases if query in d.lower()]
     return jsonify(suggestions)
 
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
