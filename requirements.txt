@@ -3,6 +3,7 @@ anyio
 beautifulsoup4
 blinker
 bs4
+base64
 certifi
 charset-normalizer
 click
@@ -43,6 +44,7 @@ pyttsx3
 pytz
 regex
 requests
+scikit-learn
 six
 sniffio
 soupsieve
