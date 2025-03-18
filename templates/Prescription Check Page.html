@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prescription Analyzer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg,black,rgb(65, 61, 61));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 500px;
+      position:absolute;
+      left:20px;
+      top: 100px;
+      width: 90%;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .image-upload {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .image-upload input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .preview {
+      margin-top: 20px;
+    }
+
+    .preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+
+      .container h1 {
+        font-size: 20px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+    .logo{
+      position: absolute;
+      right: 20px;
+    }
+    .result {
+      box-shadow: inset 44px -44px 44px 0px rgba(165, 165, 165, 0.1), inset -44px 44px 44px 0px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(44px);
+      background: rgba(242, 241, 241, 0.641);
+      max-height: 300px; /* Adjust this as needed */
+      max-width: 500px;
+      overflow-y: auto;  /* Enables vertical scrolling */
+      overflow-x: hidden;
+      margin-left: 80px; 
+      margin-top: -230px;
+}
+
+  </style>
+</head>
+
+<body>
+  <img src="static/prescription icon 2.png" class="logo">
+  <div class="container">
+    <h1>Analyze Prescription</h1>
+    <form action="/AnalyzePrescription" method="post" enctype="multipart/form-data">
+      <div class="image-upload">
+        <p>Click or Drag to Upload Prescription</p>
+        <input type="file" name="prescription" accept="image/*" capture="camera" onchange="showPreview(event)" required>
+      </div>
+      <div class="preview" id="preview"></div>
+      <button type="submit">Analyze</button>
+    </form>
+  </div>
+    <div class="result">
+      {% for point in results %}
+      <p id="rev_sum" style="font-size: 18px; margin-bottom: 10px;">{{ point }}</p>
+      {% endfor %}
+</div>
+
+  <script>
+    function showPreview(event) {
+      const preview = document.getElementById('preview');
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.innerHTML = `<img src="${e.target.result}" alt="Prescription Preview">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+
+</html>

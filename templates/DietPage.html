@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Form</title>
+    <style>
+        body {
+            background-image: url("static/DietPage.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .maincontainer {
+            width: 700px;
+            height: 750px;
+            position: absolute;
+            right: 44px; /* Distance from the right */
+            top: 420px;
+            transform: translateY(-50%);
+            box-shadow: inset 23.8px -23.8px 23.8px 0px rgba(165, 165, 165, 0.1), inset -23.8px 23.8px 23.8px 0px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20.8px);
+            background: rgba(113, 116, 115, 0.836);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+        }
+        .container1 {
+            box-shadow: inset 44px -44px 44px 0px rgba(165, 165, 165, 0.1), inset -44px 44px 44px 0px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(44px);
+            background: rgba(242, 241, 241, 0.641);
+            max-height: 300px; /* Adjust this as needed */
+            overflow-y: auto;  /* Enables vertical scrolling */
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+            border: 1px solid #ccc; /* Optional: adds a border to distinguish the scroll area */
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+        }
+
+        label {
+            font-size: 16px;
+            color: #000000;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 95.5%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e51919;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #cbcdcbd1;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="maincontainer">
+        <div class="container">
+        <h1><strong>DIET PLAN</strong></h1>
+    
+        <form action="/dietresult" method="POST">
+            <label for="medicineName"><strong>Drug Name</strong></label>
+            <input type="text" id="medicineName" name="medicineName" required>
+    
+            <label for="sideEffects"><strong>Side Effects</strong></label>
+            <input type="text" id="sideEffects" name="sideEffects" required>
+    
+            <label for="age"><strong>Age</strong></label>
+            <input type="number" id="age" name="age" min="0" required>
+    
+            <label for="otherDiseases"><strong>Other Diseases</strong></label>
+            <input type="text" id="otherDiseases" name="otherDiseases" required>
+    
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+        <div class="container1">
+            {% if results %}
+                <ul>
+                    {% for i in results %}
+                    <p>{{ i }}</p>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    
+    
+
+
+    <script>
+        // Ensure the "Age" field only accepts integers
+        document.getElementById('age').addEventListener('input', function(event) {
+            var value = event.target.value;
+            if (!/^\d*$/.test(value)) {
+                event.target.setCustomValidity("Please enter a valid age (only integers allowed).");
+            } else {
+                event.target.setCustomValidity("");
+            }
+        });
+    </script>
+
+</body>
+</html>
